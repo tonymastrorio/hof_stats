@@ -15,26 +15,39 @@ class HofStats::CLI
         end
     end
 
-    def list_individual_player(player_index)
-        puts "Player Name:      #{HofStats::Player.all[player_index].name}"
-        puts "Position:         #{HofStats::Player.all[player_index].position}"
-        puts "Games:            #{HofStats::Player.all[player_index].games}"
-        puts "Hits:             #{HofStats::Player.all[player_index].hits}"
-        puts "Runs:             #{HofStats::Player.all[player_index].runs}"
-        puts "Homers:           #{HofStats::Player.all[player_index].homers}"
-        puts "Batting Average: #{HofStats::Player.all[player_index].batting_avg}"
+    def list_individual_player(player)
+        puts "Player Name:      #{player.name}"
+        if player.position == "" || player.position == "Manager"
+            puts "No stats available for #{player.name}."
+        else
+            puts "Position:         #{player.position}"
+            if player.position != "Pitcher"
+                puts "Games:            #{player.games}"
+                puts "Hits:             #{player.hits}"
+                puts "Runs:             #{player.runs}"
+                puts "Homers:           #{player.homers}"
+                puts "Batting Average: #{player.batting_avg}"
+            else
+                puts "ERA:              #{player.era}"
+                puts "W/L %:            #{player.wlpercent}"
+                puts "Strikeouts:       #{player.strikeouts}"
+            end
+        end
     end
 
     def menu
         input = nil
         while input != "exit"
+            puts ""
             puts "Enter the line number of a player to see more info."
             puts "Type 'list' to see the list of players again."
             puts "Type 'exit' to exit."
             input = gets.strip.downcase
             if input.to_i > 0
-                player_index = input.to_i - 1
-                list_individual_player(player_index)
+                player = HofStats::Player.all[input.to_i - 1]
+                puts "***************************"
+                list_individual_player(player)
+                puts "***************************"
             elsif input == "list"
                 list_players
             else
