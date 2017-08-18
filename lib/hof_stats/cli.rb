@@ -15,6 +15,16 @@ class HofStats::CLI
         end
     end
 
+    def list_individual_player(player_index)
+        puts "Player Name:      #{HofStats::Player.all[player_index].name}"
+        puts "Position:         #{HofStats::Player.all[player_index].position}"
+        puts "Games:            #{HofStats::Player.all[player_index].games}"
+        puts "Hits:             #{HofStats::Player.all[player_index].hits}"
+        puts "Runs:             #{HofStats::Player.all[player_index].runs}"
+        puts "Homers:           #{HofStats::Player.all[player_index].homers}"
+        puts "Batting Average: #{HofStats::Player.all[player_index].batting_avg}"
+    end
+
     def menu
         input = nil
         while input != "exit"
@@ -23,7 +33,8 @@ class HofStats::CLI
             puts "Type 'exit' to exit."
             input = gets.strip.downcase
             if input.to_i > 0
-                puts @players[input.to_i - 1]
+                player_index = input.to_i - 1
+                list_individual_player(player_index)
             elsif input == "list"
                 list_players
             else
