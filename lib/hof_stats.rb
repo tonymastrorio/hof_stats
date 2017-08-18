@@ -1,5 +1,2 @@
-require "hof_stats/version"
-
-module HofStats
-  # Your code goes here...
-end
+require_relative "./hof_stats/version"
+require_relative './hof_stats/cli'
