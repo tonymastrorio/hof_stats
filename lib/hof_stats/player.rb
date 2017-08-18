@@ -1,6 +1,6 @@
 class HofStats::Player
 
-    attr_accessor :name, :year, :votes, :percent, :url
+    attr_accessor :name, :year, :votes, :percent, :url, :games, :runs, :hits, :homers, :batting_avg
 
     @@all = []
 
@@ -25,6 +25,35 @@ class HofStats::Player
 
     def self.all
         @@all
+    end
+
+    def games
+        @games = doc.css("tfoot td[data-stat='G']").first.text
+        binding.pry
+    end
+
+    def runs
+        @runs = doc.css("tfoot td[data-stat='R']").first.text
+        binding.pry
+    end
+
+    def hits
+        @hits = doc.css("tfoot td[data-stat='H']").first.text
+        binding.pry
+    end
+
+    def homers
+        @homers = doc.css("tfoot td[data-stat='HR']").first.text
+        binding.pry
+    end
+
+    def batting_avg
+        @batting_avg = doc.css("tfoot td[data-stat='batting_avg']").first.text
+        binding.pry
+    end
+
+    def doc
+        @doc = Nokogiri::HTML(open(self.url))
     end
 
 end
