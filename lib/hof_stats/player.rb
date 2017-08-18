@@ -3,9 +3,7 @@ class HofStats::Player
     attr_accessor :name, :year, :votes, :percent, :url
 
     def self.all
-        #should return all the players
-        # puts "1. Jeff Bagwell - 2017 - 381 votes - 86.2%"
-        # puts "2. Tim Raines - 2017 - 380 votes - 86.0%"
+        #scrape site and return players
 
         player_1 = self.new
         player_1.name = "Jeff Bagwell"

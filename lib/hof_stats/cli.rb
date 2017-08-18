@@ -9,6 +9,9 @@ class HofStats::CLI
     def list_players
         puts "MLB Hall of Famers"
         @players = HofStats::Player.all
+        @players.each_with_index do |player, i|
+            puts "#{i+1}. #{player.name} - #{player.year} - #{player.votes} votes - #{player.percent}%"
+        end
     end
 
     def menu
@@ -18,12 +21,9 @@ class HofStats::CLI
             puts "Type 'list' to see the list of players again."
             puts "Type 'exit' to exit."
             input = gets.strip.downcase
-            case input
-            when "1"
-                puts "More info on 1..."
-            when "2"
-                puts "More info on 2..."
-            when "list"
+            if input.to_i > 0
+                puts @players[input.to_i - 1]
+            elsif input == "list"
                 list_players
             else
                 puts "That is not a valid command. Type 'list' or 'exit'."
