@@ -6,11 +6,11 @@ require "hof_stats/version"
 Gem::Specification.new do |spec|
   spec.name          = "hof_stats"
   spec.version       = HofStats::VERSION
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["<github email address>"]
+  spec.authors       = ["Tony"]
+  spec.email         = ["temp"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{temp to be filled in later}
+  spec.description   = %q{temp to be filled in later}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
