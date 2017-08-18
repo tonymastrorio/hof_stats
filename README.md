@@ -1,8 +1,6 @@
 # HofStats
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hof_stats`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This Ruby Gem provies a CLI to view all the members of the MLB Hall of Fame as well as their career statistics.  Data is pulled from baseball-reference.com.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Type the text below in your terminal and then follow the on screen prompts.
 
 ## Development
 
