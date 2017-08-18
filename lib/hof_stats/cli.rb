@@ -37,26 +37,25 @@ class HofStats::CLI
 
     def menu
         input = nil
-        while input != "exit"
-            puts ""
-            puts "Enter the line number of a player to see more info."
-            puts "Type 'list' to see the list of players again."
-            puts "Type 'exit' to exit."
-            input = gets.strip.downcase
-            if input.to_i > 0
-                player = HofStats::Player.all[input.to_i - 1]
-                puts "***************************"
-                list_individual_player(player)
-                puts "***************************"
-            elsif input == "list"
-                list_players
-            else
-                puts "That is not a valid command. Type 'list' or 'exit'."
-            end
+        puts ""
+        puts "Enter the line number of a player to see more info."
+        puts "Type 'exit' to exit."
+
+        input = gets.strip.downcase
+        player = HofStats::Player.all[input.to_i - 1]
+
+        puts "***************************"
+        list_individual_player(player)
+        puts "***************************"
+
+        puts "Would you like to see another player? (Y or N)"
+        input = gets.strip.downcase
+        if input == "y"
+            menu
         end
     end
 
     def goodbye
-        puts "Goodbye! Wonder if Pete Rose will ever make it to the Hall of Fame..."
+        puts "Goodbye!"
     end
 end
