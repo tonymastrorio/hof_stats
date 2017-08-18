@@ -7,6 +7,7 @@ class HofStats::CLI
     end
 
     def list_players
+        HofStats::Scraper.new.make_player
         puts "MLB Hall of Famers"
         @players = HofStats::Player.all
         @players.each_with_index do |player, i|

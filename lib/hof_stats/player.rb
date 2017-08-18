@@ -2,24 +2,29 @@ class HofStats::Player
 
     attr_accessor :name, :year, :votes, :percent, :url
 
+    @@all = []
+
+    def self.new_from_index(p)
+        self.new(
+            p.css("td[data-stat='player']").text,
+            p.css("th[data-stat='year_ID']").text,
+            p.css("td[data-stat='votes']").text,
+            p.css("td[data-stat='votes_pct']").text,
+            "http://baseball-reference.com#{p.css("td a").attribute("href").text}"
+            )
+    end
+
+    def initialize(name=nil, year=nil, votes=nil, percent=nil, url=nil)
+        @name = name
+        @year = year
+        @votes = votes
+        @percent = percent
+        @url = url
+        @@all << self
+    end
+
     def self.all
-        #scrape site and return players
-
-        player_1 = self.new
-        player_1.name = "Jeff Bagwell"
-        player_1.year = "2017"
-        player_1.votes = "381"
-        player_1.percent = "86.2"
-        player_1.url = "https://www.baseball-reference.com/players/b/bagweje01.shtml"
-
-        player_2 = self.new
-        player_2.name = "Tim Raines"
-        player_2.year = "2017"
-        player_2.votes = "380"
-        player_2.percent = "86.0"
-        player_2.url = "https://www.baseball-reference.com/players/r/raineti01.shtml"
-    
-        [player_1, player_2]
+        @@all
     end
 
 end
