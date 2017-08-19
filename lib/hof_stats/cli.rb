@@ -21,16 +21,16 @@ class HofStats::CLI
             puts "No stats available for #{player.name}."
         else
             puts "Position:         #{player.position}"
-            if player.position != "Pitcher"
+            if player.position.include? "Pitcher"
+                puts "ERA:              #{player.era}"
+                puts "W/L %:            #{player.wlpercent}"
+                puts "Strikeouts:       #{player.strikeouts}"
+            else
                 puts "Games:            #{player.games}"
                 puts "Hits:             #{player.hits}"
                 puts "Runs:             #{player.runs}"
                 puts "Homers:           #{player.homers}"
                 puts "Batting Average: #{player.batting_avg}"
-            else
-                puts "ERA:              #{player.era}"
-                puts "W/L %:            #{player.wlpercent}"
-                puts "Strikeouts:       #{player.strikeouts}"
             end
         end
     end
@@ -42,16 +42,25 @@ class HofStats::CLI
         puts "Type 'exit' to exit."
 
         input = gets.strip.downcase
-        player = HofStats::Player.all[input.to_i - 1]
 
-        puts "***************************"
-        list_individual_player(player)
-        puts "***************************"
-
-        puts "Would you like to see another player? (Y or N)"
-        input = gets.strip.downcase
-        if input == "y"
+        if input == "exit"
+            goodbye
+            exit()
+        elsif input.to_i < 1 || input.to_i > HofStats::Player.all.length
+            puts "Please enter a valid line number."
             menu
+        else
+            player = HofStats::Player.all[input.to_i - 1]
+
+            puts "***************************"
+            list_individual_player(player)
+            puts "***************************"
+
+            puts "Would you like to see another player? (Y or N)"
+            input = gets.strip.downcase
+            if input == "y"
+                menu
+            end
         end
     end
 
