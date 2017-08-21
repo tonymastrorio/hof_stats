@@ -15,9 +15,9 @@ class HofStats::CLI
                 player.votes = "N/A"
             end
             if player.percent == ""
-                player.percent = "N/A"
+                player.percent = "N/A %"
             end
-            puts "#{i+1}. #{player.name} - #{player.year} - #{player.votes} votes - #{player.percent}%"
+            puts "#{i+1}. #{player.name} - #{player.year} - #{player.votes} votes - #{player.percent}"
         end
     end
 
