@@ -11,6 +11,12 @@ class HofStats::CLI
         puts "MLB Hall of Famers"
         @players = HofStats::Player.all
         @players.each_with_index do |player, i|
+            if player.votes == ""
+                player.votes = "N/A"
+            end
+            if player.percent == ""
+                player.percent = "N/A"
+            end
             puts "#{i+1}. #{player.name} - #{player.year} - #{player.votes} votes - #{player.percent}%"
         end
     end
